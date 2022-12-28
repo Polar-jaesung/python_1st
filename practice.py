@@ -9,4 +9,4 @@ search_url = base_url + keyword
 r = requests.get(search_url)
 soup = BeautifulSoup(r.text, "html.parser")
 items = soup.select(".api_txt_lines.total_tit")
-for item in items: print(item.text)
+for rank_num,item in enumerate(items,1) : print(f"{rank_num} : {item.text}" )
