@@ -8,7 +8,15 @@ search_daum = first_address +search
 
 result =requests.get(search_daum)
 soup = BeautifulSoup(result.text, "html.parser")
-articles = soup.select(".tit_main.fn_tit_u")
+articles = soup.select(".wrap_cont")
 
 for rank_count, article in enumerate(articles,1): 
-    print(f"{rank_count} : {article.text} " )
+    article_company = article.select_one(".cont_info > a").text
+    article_title = article.select_one(".tit_main.fn_tit_u")
+
+    print(f"<{rank_count}>")
+    print(f"{article_company} " )
+    print(f"{article_title.text} " )
+    print(f"{article_title.get('href')} " )
+    print()
+    
